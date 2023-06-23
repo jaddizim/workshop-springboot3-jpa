@@ -1,7 +1,7 @@
 package com.educandoweb.course.resources;
 
-import com.educandoweb.course.entities.User;
-import com.educandoweb.course.services.UserService;
+import com.educandoweb.course.entities.Product;
+import com.educandoweb.course.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/products")
+public class ProductResource {
 
     @Autowired
-    private UserService userService;
+    private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll()
+    public ResponseEntity<List<Product>> findAll()
     {
-        List<User> list = userService.findAll();
+        List<Product> list = productService.findAll();
 
         return ResponseEntity
                 .ok()
@@ -29,12 +29,12 @@ public class UserResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id)
+    public ResponseEntity<Product> findById(@PathVariable Long id)
     {
-        User user = userService.findById(id);
+        Product product = productService.findById(id);
 
         return ResponseEntity
                 .ok()
-                .body(user);
+                .body(product);
     }
 }

@@ -37,5 +37,4 @@ public class CategoryResource {
                 .ok()
                 .body(category);
     }
-
 }

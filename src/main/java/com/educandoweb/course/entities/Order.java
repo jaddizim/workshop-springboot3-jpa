@@ -12,6 +12,8 @@ import java.util.Objects;
 @Table(name = "tb_order")
 public class Order implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -79,14 +81,5 @@ public class Order implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", moment=" + moment +
-                ", client=" + client +
-                '}';
     }
 }
