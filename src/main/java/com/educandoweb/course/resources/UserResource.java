@@ -18,8 +18,7 @@ public class UserResource {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll()
-    {
+    public ResponseEntity<List<User>> findAll() {
         List<User> list = userService.findAll();
 
         return ResponseEntity
@@ -28,8 +27,7 @@ public class UserResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id)
-    {
+    public ResponseEntity<User> findById(@PathVariable Long id) {
         User user = userService.findById(id);
 
         return ResponseEntity
@@ -38,8 +36,7 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<User> insert(@RequestBody User obj)
-    {
+    public ResponseEntity<User> insert(@RequestBody User obj) {
         obj = userService.insert(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -47,5 +44,14 @@ public class UserResource {
         return ResponseEntity
                 .created(uri)
                 .body(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        userService.delete(id);
+
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 }
